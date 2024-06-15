@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="stylesheet" href="index.css">
+  <title>MusixBox</title>
+    <style type="text/css">
+a{-ms-touch-action:manipulation;touch-action:manipulation}</style>
+</head>
+
+<body>
+<!DOCTYPE html>
+    <div id="url-render-container" data-bm="54" style="z-index: 90000; position: fixed; bottom: 0%; box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 20px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px; width: 163px; height: 1013.05px; left: 1740px; top: 0px; background-color: white !important; pointer-events: initial;">
+        <div id="url-render-header" style="height: 28px; width: 100%; align-items: center; display: none; box-sizing: initial; padding-top: 0.45%; padding-bottom: 0.45%; background-color: rgb(255, 255, 255) !important; pointer-events: initial;">
+            <div id="url-render-header-button-backward" class="url-render-header-button-inactive" style="margin-left:10px;">
+                <div id="url-render-div-header-navigate-backward">
+                    <img id="url-render-header-navigate-backward" data-bm="47" src="chrome-extension://bbcfehdneeaobaaglggjekkfoicdkadj/public/image/left-arrow.svg" style="width:20px; user-select: none; opacity:0.3" /></div>
+            </div>
+            <div id="url-render-header-button-forward" class="url-render-header-button-inactive" style="margin-left:3px; margin-right:10px;">
+                <div id="url-render-div-header-navigate-forward">
+                    <img id="url-render-header-navigate-forward" data-bm="48" src="chrome-extension://bbcfehdneeaobaaglggjekkfoicdkadj/public/image/right-arrow.svg" style="width:20px; user-select: none; opacity:0.3" /></div>
+            </div>
+            <div id="url-render-header-button-expand" class="url-render-header-button-active" style="cursor:nwse-resize !important; margin-left:10px; margin-right:3px;">
+                <div id="url-render-div-header-expand">
+                    <img id="url-render-header-expand" data-bm="49" src="chrome-extension://bbcfehdneeaobaaglggjekkfoicdkadj/public/image/resize.svg" style="width:15px; user-select: none;" /></div>
+            </div>
+            <div id="url-render-header-button-move" class="url-render-header-button-active" style="cursor:grab !important;">
+                <div id="url-render-div-header-move">
+                    <img id="url-render-header-move" data-bm="50" src="chrome-extension://bbcfehdneeaobaaglggjekkfoicdkadj/public/image/move.svg" style="width:15px; user-select: none;" /></div>
+            </div>
+            <div id="url-render-header-button-reset-position" class="url-render-header-button-active" style="cursor:pointer !important; margin-left:3px; margin-right:10px;">
+                <div id="url-render-div-header-reset-position">
+                    <img id="url-render-header-reset-position" data-bm="51" src="chrome-extension://bbcfehdneeaobaaglggjekkfoicdkadj/public/image/default.svg" style="width:15px; user-select: none;" /></div>
+            </div>
+            <div style="box-shadow: 0px 1px 10px 0 rgba(0,0,0,0.16), 0 0 0 1px rgba(0,0,0,0.08); padding: 0.1%; width:90%; text-align:center; white-space: nowrap; overflow: hidden;text-overflow: ellipsis;">
+                <a id="url-render-link-header" class="link-2" href="https://29a.ch/timestretch/" onclick="null;return false;" style="user-select: none; font-size: 16px; line-height: 24px; font-weight: 400; white-space: nowrap; overflow: hidden;text-overflow: ellipsis; color:#1a0dab; font-family: Roboto, sans-serif;" target="_blank">https://29a.ch/timestretch/</a></div>
+            <div id="url-render-header-button-close" class="url-render-header-button-active" style="cursor: pointer !important; margin-right:10px; margin-left:10px;">
+                <div id="url-render-div-header-close">
+                    <img id="url-render-header-close" data-bm="52" src="chrome-extension://bbcfehdneeaobaaglggjekkfoicdkadj/public/image/close.svg" style="width:15px; user-select: none;" /></div>
+            </div>
+        </div>
+        <div id="loading-love-url-render" class="container url-render-container-loading" style="display: none;">
+            <div class="row url-render-h50 url-render-center-bottom">
+                <h1 class="h1-top-line">The site is loading with love</h1>
+                <div class="lds-heart">
+                    <div>
+                    </div>
+                </div>
+            </div>
+            <div class="row url-render-center">
+                <h2><b class="url-render-title">Url Render</b> try to render the website.. just a moment.</h2>
+            </div>
+        </div>
+        <iframe id="I1" data-bm="53" height="100%" name="I1" sandbox="allow-forms allow-pointer-lock allow-same-origin allow-scripts allow-presentation" src="https://29a.ch/timestretch/" style="position: absolute; border: none; z-index: 90002; height: 1006.23px; pointer-events: initial;" width="100%"></iframe>
+    </div>
+</body>
+
+<!-- Libraries -->
+<script src="StartAudioContext.js"></script>
+<script src="tone.js"></script>
+<script src="perlin.js"></script>
+<script src="three.min.js"></script>
+<script src="tween.js"></script>
+<script src="simplex.js"></script>
+
+<!-- Custom scripts -->
+<script id="vertexShader" type="x-shader/x-vertex">
+  varying vec2 vUv;
+  void main() {
+    gl_Position = projectionMatrix * modelViewMatrix * vec4(position,1.0);
+  }
+</script>
+
+<script id="fragmentShader" type="x-shader/x-fragment">
+  uniform vec3 color1;
+  uniform vec3 color2;
+  varying vec2 vUv;
+
+  void main() {
+    // gl_FragColor = vec4(gl_FragCoord.x / 1000.0, gl_FragCoord.y / 1000.0, 0.0, 1.0);
+    gl_FragColor = vec4(color1 / 2.0, 1.0);
+  }
+</script>
+
+<script src="logging.js"></script>
+<script src="measure.js"></script>
+<script src="chord.js"></script>
+<script src="index.js"></script>
+<script src="colormaps.js"></script>
+<script src="visuals.js"></script>
+
+</html>
